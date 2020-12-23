@@ -9,9 +9,7 @@ export default function Home() {
       email: { value: email },
       password: { value: password },
     } = e.target.elements;
-    const token = await routes.signup.request({ email, password });
-    console.log({ token });
-    console.log({ email, password });
+    const { data: token } = await routes.signup.request({ email, password });
   };
 
   return (

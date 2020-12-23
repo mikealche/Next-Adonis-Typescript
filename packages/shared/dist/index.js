@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.a = exports.routes = void 0;
+exports.routes = void 0;
 var axios_1 = __importDefault(require("axios"));
 var api = axios_1.default.create({
     baseURL: "http://localhost:3333/",
@@ -31,10 +31,12 @@ var userRoutes = {
         method: "post",
         request: function (_a) {
             var email = _a.email, password = _a.password;
-            return api.post("signup", { email: email, password: password });
+            return api.post("signup", {
+                email: email,
+                password: password,
+            });
         },
         controllerName: "AuthController.signup",
     },
 };
 exports.routes = __assign({}, userRoutes);
-exports.a = ["a", "b"];

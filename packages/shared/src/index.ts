@@ -1,5 +1,6 @@
 import { AuthController } from "@template/backend";
-import Axios from "axios";
+import Axios, { AxiosResponse } from "axios";
+
 type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 
 const api = Axios.create({
@@ -16,14 +17,11 @@ const userRoutes = {
   signup: {
     route: "/signup",
     method: "post",
-    request: ({
-      email,
-      password,
-    }: {
-      email: string;
-      password: string;
-    }): ReturnType<AuthController["me"]> =>
-      api.post("signup", { email, password }),
+    request: ({ email, password }: { email: string; password: string }) =>
+      api.post<Awaited<ReturnType<AuthController["signup"]>>>("signup", {
+        email,
+        password,
+      }),
     controllerName: "AuthController.signup",
   },
 };
@@ -31,5 +29,3 @@ const userRoutes = {
 export const routes = {
   ...userRoutes,
 };
-
-export const a = ["a", "b"];

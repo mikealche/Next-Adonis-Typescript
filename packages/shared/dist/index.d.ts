@@ -1,4 +1,5 @@
 import { AuthController } from "@template/backend";
+import { AxiosResponse } from "axios";
 export declare const routes: {
     me: {
         route: string;
@@ -9,11 +10,15 @@ export declare const routes: {
     signup: {
         route: string;
         method: string;
-        request: ({ email, password, }: {
+        request: ({ email, password }: {
             email: string;
             password: string;
-        }) => ReturnType<AuthController["me"]>;
+        }) => Promise<AxiosResponse<{
+            type: "bearer";
+            token: string;
+            expires_at?: string | undefined;
+            expires_in?: number | undefined;
+        }>>;
         controllerName: string;
     };
 };
-export declare const a: string[];

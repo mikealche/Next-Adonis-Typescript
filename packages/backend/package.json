@@ -2,6 +2,7 @@
   "name": "@template/backend",
   "version": "1.0.0",
   "private": true,
+  "main": "./build/entrypoint.ts",
   "typings": "./build/entrypoint.d.ts",
   "scripts": {
     "build": "node ace build --production",
