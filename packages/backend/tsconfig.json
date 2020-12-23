@@ -6,12 +6,13 @@
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
+    "declaration": true,
     "paths": {
       "App/*": ["./app/*"],
       "Config/*": ["./config/*"],
       "Contracts/*": ["./contracts/*"],
       "Database/*": ["./database/*"]
     },
-    "types": ["@adonisjs/core", "@adonisjs/repl"]
+    "types": ["@adonisjs/core", "@adonisjs/repl", "@adonisjs/lucid", "@adonisjs/auth"]
   }
 }

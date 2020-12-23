@@ -1,7 +1,8 @@
 {
-  "name": "backend",
+  "name": "@template/backend",
   "version": "1.0.0",
   "private": true,
+  "typings": "./build/entrypoint.d.ts",
   "scripts": {
     "build": "node ace build --production",
     "start": "node server.js",
@@ -23,9 +24,13 @@
     "youch-terminal": "^1.0.1"
   },
   "dependencies": {
-    "@template/shared": "1.0.0",
+    "@adonisjs/auth": "^5.1.1",
     "@adonisjs/core": "^5.0.4-preview-rc",
+    "@adonisjs/lucid": "^10.0.0",
     "@adonisjs/repl": "^1.0.0",
+    "@template/shared": "1.0.0",
+    "luxon": "^1.25.0",
+    "pg": "^8.5.1",
     "proxy-addr": "^2.0.6",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19"
