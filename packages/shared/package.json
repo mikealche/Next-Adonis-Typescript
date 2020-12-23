@@ -9,6 +9,7 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
-    "build": "rm -rf ./dist && yarn tsc"
+    "build": "rm -rf ./dist && yarn tsc",
+    "build:watch": "nodemon -e ts,js --ignore ./dist -x 'rm -rf ./dist/**/*.* && yarn tsc'"
   }
 }

@@ -8,8 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/react": "^17.0.0",
+    "axios": "^0.21.1",
     "next": "10.0.4",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "@template/shared": "1.0.0"
   }
 }

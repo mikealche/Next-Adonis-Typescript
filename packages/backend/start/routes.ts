@@ -19,9 +19,11 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import { a } from '@template/shared'
+import { routes } from '@template/shared'
 
-console.log(a)
+for (const [_, { route, method, controllerName }] of Object.entries(routes)) {
+  Route[method](route, controllerName)
+}
 
 Route.get('/', async () => {
   return { hello: 'world' }
