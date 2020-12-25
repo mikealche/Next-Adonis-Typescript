@@ -1,2 +1,2 @@
-release: cd packages/build && pwd && ls && node ace migration:run
+release: cd packages/build && node ace migration:run --force
 web: node packages/build/server.js
