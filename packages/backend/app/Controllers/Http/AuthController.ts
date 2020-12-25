@@ -3,7 +3,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../../Models/User'
 
 export default class AuthController {
-  public async me({ auth }: HttpContextContract): Promise<User> {
+  public async me({ auth, request }: HttpContextContract): Promise<User> {
     const user = await auth.use('api').authenticate()
     return user
   }
@@ -24,6 +24,7 @@ export default class AuthController {
   }: HttpContextContract): Promise<ReturnType<OpaqueTokenContract<User>['toJSON']>> {
     const email = request.input('email')
     const password = request.input('password')
+
     const token = await auth.use('api').attempt(email, password)
     return token
   }

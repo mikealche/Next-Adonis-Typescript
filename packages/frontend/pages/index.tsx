@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/auth";
 import { useRouter } from "next/router";
 import MainLayout from "../layouts/MainLayout";
 export default function Home() {
-  const { setToken } = useAuth();
+  const { authenticate } = useAuth();
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,9 +14,10 @@ export default function Home() {
       email: { value: email },
       password: { value: password },
     } = e.target.elements;
+    console.log({ email, password });
     const { data: token } = await routes.signup.request({ email, password });
     console.log({ token });
-    setToken(token.token);
+    await authenticate(token.token);
     router.push("/dashboard");
   };
 

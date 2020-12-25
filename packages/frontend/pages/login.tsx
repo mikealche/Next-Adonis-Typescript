@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import MainLayout from "../layouts/MainLayout";
 
 export default function Home() {
-  const { setToken } = useAuth();
+  const { authenticate } = useAuth();
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,8 +16,7 @@ export default function Home() {
       password: { value: password },
     } = e.target.elements;
     const { data: token } = await routes.login.request({ email, password });
-    console.log({ token });
-    setToken(token.token);
+    await authenticate(token.token);
     router.push("/dashboard");
   };
 

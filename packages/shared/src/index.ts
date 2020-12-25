@@ -1,4 +1,5 @@
 import { AuthController } from "@template/backend";
+import axios, { AxiosRequestConfig } from "axios";
 import Axios, { AxiosResponse } from "axios";
 
 type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
@@ -9,11 +10,16 @@ const api = Axios.create({
   baseURL: "http://localhost:3333/",
 });
 
+let authInterceptorID: number;
 export const authenticateAPI = (token: string) => {
-  api.interceptors.request.use((config) => {
-    config.headers.Authorization = `bearer ${token}`;
+  authInterceptorID = api.interceptors.request.use((config) => {
+    config.headers.authorization = `bearer ${token}`;
     return config;
   });
+};
+
+export const unauthenticateAPI = () => {
+  api.interceptors.request.eject(authInterceptorID);
 };
 
 const userRoutes = {
