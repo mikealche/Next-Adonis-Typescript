@@ -59,10 +59,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.routes = exports.unauthenticateAPI = exports.authenticateAPI = void 0;
 var axios_1 = __importDefault(require("axios"));
-var isProduction = NODE_ENV === "production";
+var isProduction = process.env.NODE_ENV === "production";
+console.log({ isProduction: isProduction }, process.env.NEXT_PUBLIC_BACKEND_URL);
 var api = axios_1.default.create({
-    baseURL: "http://localhost:3333/",
+    baseURL: isProduction
+        ? process.env.NEXT_PUBLIC_BACKEND_URL
+        : "http://localhost:3333/",
 });
+console.log(api.defaults.baseURL, "jaja");
 var authInterceptorID;
 var authenticateAPI = function (token) {
     authInterceptorID = api.interceptors.request.use(function (config) {
@@ -88,6 +92,7 @@ var RouteObject = /** @class */ (function () {
         }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log(api.defaults.baseURL, "qwdqwdqwd");
                 if (this.method === "get") {
                     return [2 /*return*/, api[this.method](this.route)];
                 }

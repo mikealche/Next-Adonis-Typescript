@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log({ error });
       unauthenticateAPI();
-      setUser(false);
+      setUser(null);
       Cookies.remove("token");
       setIsLoading(false);
     }
