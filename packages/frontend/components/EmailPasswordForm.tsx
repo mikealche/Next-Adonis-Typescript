@@ -20,15 +20,19 @@ const CustomField = ({ name, label, type }) => (
 export default function EmailPasswordForm({ formik }) {
   return (
     <Form>
-      <CustomField name="email" type={"email"} label="Email Address" />
-      <CustomField name="password" type={"password"} label="Email Address" />
+      <CustomField name="email" type="email" label="Email Address" />
+      <CustomField name="password" type="password" label="Password" />
 
       <Button
         block
         type="submit"
-        variant="success"
-        className="mt-4"
+        className="mt-4 gradient"
+        size="lg"
         disabled={formik.isSubmitting}
+        style={{
+          background: "linear-gradient(to right, #5FC3E4, #E55D87)",
+          border: "0px solid black",
+        }}
       >
         Submit
       </Button>
