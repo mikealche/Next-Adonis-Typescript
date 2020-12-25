@@ -5,6 +5,7 @@ import { routes } from "@template/shared";
 import { useAuth } from "../contexts/auth";
 import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
+import EmailPasswordForm from "./EmailPasswordForm";
 
 const SignupForm = () => {
   const { authenticate } = useAuth();
@@ -39,32 +40,9 @@ const SignupForm = () => {
         }
       }}
     >
-      {(formik) => <ActualForm formik={formik} />}
+      {(formik) => <EmailPasswordForm formik={formik} />}
     </Formik>
   );
 };
-
-const ActualForm = ({ formik }) => (
-  <Form>
-    <div>
-      <label htmlFor="email">Email Address</label>
-      <Field name="email" type="email" className="form-control" />
-      <ErrorMessage name="email" className="text-danger" component="p" />
-    </div>
-    <div>
-      <label htmlFor="password">Password</label>
-      <Field name="password" type="password" className="form-control" />
-      <ErrorMessage name="password" className="text-danger" component="p" />
-    </div>
-    <Button
-      block
-      type="submit"
-      variant="success"
-      disabled={formik.isSubmitting}
-    >
-      Submit
-    </Button>
-  </Form>
-);
 
 export default SignupForm;
