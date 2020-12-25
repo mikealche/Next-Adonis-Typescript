@@ -2,8 +2,10 @@ import { AuthController } from "@template/backend";
 import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
 import Axios, { AxiosResponse } from "axios";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const api = Axios.create({
-  baseURL: "http://localhost:3333/",
+  baseURL: isProduction ? "" : "http://localhost:3333/",
 });
 
 let authInterceptorID: number;

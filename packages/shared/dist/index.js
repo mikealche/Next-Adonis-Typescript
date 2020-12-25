@@ -59,6 +59,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.routes = exports.unauthenticateAPI = exports.authenticateAPI = void 0;
 var axios_1 = __importDefault(require("axios"));
+var isProduction = NODE_ENV === "production";
 var api = axios_1.default.create({
     baseURL: "http://localhost:3333/",
 });
