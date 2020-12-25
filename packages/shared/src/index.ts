@@ -2,10 +2,6 @@ import { AuthController } from "@template/backend";
 import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
 import Axios, { AxiosResponse } from "axios";
 
-type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
-
-export type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
-
 const api = Axios.create({
   baseURL: "http://localhost:3333/",
 });
@@ -22,6 +18,9 @@ export const unauthenticateAPI = () => {
   api.interceptors.request.eject(authInterceptorID);
 };
 
+type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
+
+export type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
 class RouteObject<ResponseType extends (...args: any) => any> {
   public async request(
     ...args: any

@@ -19,6 +19,9 @@ export default class AuthController {
           rules.unique({ table: 'users', column: 'email' }),
         ]),
       }),
+      messages: {
+        'email.unique': 'Email already exists',
+      },
     })
     console.log({ validated })
 
