@@ -15,10 +15,14 @@ export default function Home() {
       password: { value: password },
     } = e.target.elements;
     console.log({ email, password });
-    const { data: token } = await routes.signup.request({ email, password });
-    console.log({ token });
-    await authenticate(token.token);
-    router.push("/dashboard");
+    try {
+      const { data: token } = await routes.signup.request({ email, password });
+      console.log({ token });
+      await authenticate(token.token);
+      router.push("/dashboard");
+    } catch (error) {
+      console.log(error.response.data.errors);
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import { AuthController } from "@template/backend";
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
 import Axios, { AxiosResponse } from "axios";
 
 type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
@@ -22,33 +22,47 @@ export const unauthenticateAPI = () => {
   api.interceptors.request.eject(authInterceptorID);
 };
 
+class RouteObject<ResponseType extends (...args: any) => any> {
+  public async request(
+    ...args: any
+  ): Promise<AxiosResponse<APIType<ResponseType>>> {
+    if (this.method === "get") {
+      return api[this.method](this.route);
+    } else if (this.method === "post") {
+      return api[this.method](this.route, ...args);
+    }
+    return Promise.reject("invalid method");
+  }
+
+  constructor(
+    public method: "get" | "post",
+    public route: string,
+    public handler: string
+  ) {}
+}
+
+const me = new RouteObject<AuthController["me"]>(
+  "get",
+  "/auth/me",
+  "AuthController.me"
+);
+
 const userRoutes = {
-  me: {
-    route: "/auth/me",
-    method: "get",
-    request: () => api.get<APIType<AuthController["me"]>>("/auth/me"),
-    controllerName: "AuthController.me",
-  },
-  signup: {
-    route: "/signup",
-    method: "post",
-    request: ({ email, password }: { email: string; password: string }) =>
-      api.post<Awaited<ReturnType<AuthController["signup"]>>>("/signup", {
-        email,
-        password,
-      }),
-    controllerName: "AuthController.signup",
-  },
-  login: {
-    route: "/login",
-    method: "post",
-    request: ({ email, password }: { email: string; password: string }) =>
-      api.post<Awaited<ReturnType<AuthController["login"]>>>("/login", {
-        email,
-        password,
-      }),
-    controllerName: "AuthController.login",
-  },
+  me: new RouteObject<AuthController["me"]>(
+    "get",
+    "/auth/me",
+    "AuthController.me"
+  ),
+  signup: new RouteObject<AuthController["signup"]>(
+    "post",
+    "/auth/signup",
+    "AuthController.signup"
+  ),
+  login: new RouteObject<AuthController["login"]>(
+    "post",
+    "/auth/login",
+    "AuthController.login"
+  ),
 };
 
 export const routes = {

@@ -13,7 +13,7 @@ type User = APIType<typeof routes["me"]["request"]>["data"];
 const AuthContext = React.createContext(
   {} as {
     user: User;
-    authenticate: (newToken: string) => void;
+    authenticate: (newToken: string) => Promise<void>;
     logout: () => void;
     isLoading: boolean;
   }

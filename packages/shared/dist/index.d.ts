@@ -1,42 +1,30 @@
+/// <reference types="@adonisjs/http-server/build/adonis-typings" />
+/// <reference types="@adonisjs/auth" />
 import { AxiosResponse } from "axios";
 declare type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 export declare type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
 export declare const authenticateAPI: (token: string) => void;
 export declare const unauthenticateAPI: () => void;
+declare class RouteObject<ResponseType extends (...args: any) => any> {
+    method: "get" | "post";
+    route: string;
+    handler: string;
+    request(...args: any): Promise<AxiosResponse<APIType<ResponseType>>>;
+    constructor(method: "get" | "post", route: string, handler: string);
+}
 export declare const routes: {
-    me: {
-        route: string;
-        method: string;
-        request: () => Promise<AxiosResponse<import("@template/backend/build/app/Models/User").default>>;
-        controllerName: string;
-    };
-    signup: {
-        route: string;
-        method: string;
-        request: ({ email, password }: {
-            email: string;
-            password: string;
-        }) => Promise<AxiosResponse<{
-            type: "bearer";
-            token: string;
-            expires_at?: string | undefined;
-            expires_in?: number | undefined;
-        }>>;
-        controllerName: string;
-    };
-    login: {
-        route: string;
-        method: string;
-        request: ({ email, password }: {
-            email: string;
-            password: string;
-        }) => Promise<AxiosResponse<{
-            type: "bearer";
-            token: string;
-            expires_at?: string | undefined;
-            expires_in?: number | undefined;
-        }>>;
-        controllerName: string;
-    };
+    me: RouteObject<({ auth, request }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<import("@template/backend/build/app/Models/User").default>>;
+    signup: RouteObject<({ auth, request, }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<{
+        type: "bearer";
+        token: string;
+        expires_at?: string | undefined;
+        expires_in?: number | undefined;
+    }>>;
+    login: RouteObject<({ auth, request, }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<{
+        type: "bearer";
+        token: string;
+        expires_at?: string | undefined;
+        expires_in?: number | undefined;
+    }>>;
 };
 export {};

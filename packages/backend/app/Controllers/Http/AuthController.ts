@@ -1,6 +1,7 @@
 import { OpaqueTokenContract } from '@ioc:Adonis/Addons/Auth'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../../Models/User'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
   public async me({ auth, request }: HttpContextContract): Promise<User> {
@@ -11,6 +12,16 @@ export default class AuthController {
     auth,
     request,
   }: HttpContextContract): Promise<ReturnType<OpaqueTokenContract<User>['toJSON']>> {
+    const validated = await request.validate({
+      schema: schema.create({
+        email: schema.string({}, [
+          rules.email(),
+          rules.unique({ table: 'users', column: 'email' }),
+        ]),
+      }),
+    })
+    console.log({ validated })
+
     const email = request.input('email')
     const password = request.input('password')
 
