@@ -10,6 +10,7 @@
   "dependencies": {
     "@template/shared": "1.0.0",
     "@types/react": "^17.0.0",
+    "@types/styled-jsx": "^2.2.8",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "formik": "^2.2.6",

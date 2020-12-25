@@ -8,8 +8,8 @@ export default function dashboard() {
 
   const router = useRouter();
   useEffect(() => {
-    if (!user && !isLoading) router.push("/");
+    if (!user && !isLoading) router.push("/signup");
   }, [user, isLoading]);
 
-  return <MainLayout>You're on the dashboard</MainLayout>;
+  return <MainLayout>"</MainLayout>;
 }
