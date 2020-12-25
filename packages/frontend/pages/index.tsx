@@ -3,9 +3,10 @@ import styles from "../styles/Home.module.css";
 import { routes, authenticateAPI } from "@template/shared";
 import Cookies from "js-cookie";
 import { useAuth } from "../contexts/auth";
-
+import { useRouter } from "next/router";
 export default function Home() {
   const { setToken } = useAuth();
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const {
@@ -14,6 +15,7 @@ export default function Home() {
     } = e.target.elements;
     const { data: token } = await routes.signup.request({ email, password });
     setToken(token.token);
+    router.push("/dashboard");
   };
 
   return (
@@ -24,7 +26,7 @@ export default function Home() {
       <p>Password</p>
       <input type="password" name="password" id="" />
       <div>
-        <button> Submit </button>
+        <button className="btn btn-info"> Submit </button>
       </div>
     </form>
   );
