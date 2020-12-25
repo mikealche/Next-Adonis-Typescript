@@ -1,2 +1,2 @@
-release: cd deploy/packages/build && node ace migration:run
-web: node deploy/packages/build/server.js
+release: cd packages/build && node ace migration:run
+web: node packages/build/server.js
