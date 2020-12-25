@@ -5,13 +5,11 @@ import Axios, { AxiosResponse } from "axios";
 
 const isProduction = process.env.NODE_ENV === "production";
 
-console.log({ isProduction }, process.env.NEXT_PUBLIC_BACKEND_URL);
 const api = Axios.create({
   baseURL: isProduction
     ? process.env.NEXT_PUBLIC_BACKEND_URL
     : "http://localhost:3333/",
 });
-console.log(api.defaults.baseURL, "jaja");
 
 let authInterceptorID: number;
 export const authenticateAPI = (token: string) => {
@@ -32,7 +30,6 @@ class RouteObject<ResponseType extends (...args: any) => any> {
   public async request(
     ...args: any
   ): Promise<AxiosResponse<APIType<ResponseType>>> {
-    console.log(api.defaults.baseURL, "qwdqwdqwd");
     if (this.method === "get") {
       return api[this.method](this.route);
     } else if (this.method === "post") {

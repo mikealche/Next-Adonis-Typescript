@@ -26,7 +26,6 @@ const SignupForm = () => {
             email,
             password,
           });
-          console.log({ token });
           await authenticate(token.token);
           setSubmitting(false);
           router.push("/dashboard");
