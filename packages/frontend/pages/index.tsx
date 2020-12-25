@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { routes } from "@template/shared";
+import { routes, authenticateAPI } from "@template/shared";
+import Cookies from "js-cookie";
 
 export default function Home() {
   const handleSubmit = async (e) => {
@@ -10,6 +11,14 @@ export default function Home() {
       password: { value: password },
     } = e.target.elements;
     const { data: token } = await routes.signup.request({ email, password });
+    authenticateAPI(token.token);
+    Cookies.set("token", token.token);
+    try {
+      const { data: user } = await routes.me.request();
+      console.log({ user });
+    } catch (e) {
+      console.log({ e });
+    }
   };
 
   return (

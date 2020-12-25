@@ -1,10 +1,10 @@
-import { AuthController } from "@template/backend";
 import { AxiosResponse } from "axios";
+export declare const authenticateAPI: (token: string) => void;
 export declare const routes: {
     me: {
         route: string;
         method: string;
-        request: () => ReturnType<AuthController["me"]>;
+        request: () => Promise<AxiosResponse<import("@template/backend/build/app/Models/User").default>>;
         controllerName: string;
     };
     signup: {

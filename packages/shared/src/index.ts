@@ -3,15 +3,24 @@ import Axios, { AxiosResponse } from "axios";
 
 type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 
+type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
+
 const api = Axios.create({
   baseURL: "http://localhost:3333/",
 });
 
+export const authenticateAPI = (token: string) => {
+  api.interceptors.request.use((config) => {
+    config.headers.Authorization = `bearer ${token}`;
+    return config;
+  });
+};
+
 const userRoutes = {
   me: {
-    route: "/me",
+    route: "/auth/me",
     method: "get",
-    request: (): ReturnType<AuthController["me"]> => Axios.get("/me"),
+    request: () => api.get<APIType<AuthController["me"]>>("/auth/me"),
     controllerName: "AuthController.me",
   },
   signup: {

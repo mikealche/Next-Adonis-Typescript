@@ -4,7 +4,7 @@ import User from '../../Models/User'
 
 export default class AuthController {
   public async me({ auth }: HttpContextContract): Promise<User> {
-    const user = await auth.authenticate()
+    const user = await auth.use('api').authenticate()
     return user
   }
   public async signup({
