@@ -14,6 +14,7 @@ export default function Home() {
       password: { value: password },
     } = e.target.elements;
     const { data: token } = await routes.signup.request({ email, password });
+    console.log({ token });
     setToken(token.token);
     router.push("/dashboard");
   };
