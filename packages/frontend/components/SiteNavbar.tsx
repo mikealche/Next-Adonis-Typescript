@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import { useAuth } from "../contexts/auth";
 import ClientOnly from "./ClientOnly";
+import Link from "next/link";
 
 export default function SiteNavbar() {
   return (
@@ -49,8 +50,13 @@ function AuthDetails() {
     return (
       <div>
         <Nav>
-          <Nav.Link>Signup</Nav.Link>
-          <Nav.Link>Login</Nav.Link>
+          <Link href="/" passHref>
+            <Nav.Link>Signup</Nav.Link>
+          </Link>
+
+          <Link href="login" passHref>
+            <Nav.Link href="login">Login</Nav.Link>
+          </Link>
         </Nav>
       </div>
     );

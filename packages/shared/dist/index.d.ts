@@ -23,5 +23,19 @@ export declare const routes: {
         }>>;
         controllerName: string;
     };
+    login: {
+        route: string;
+        method: string;
+        request: ({ email, password }: {
+            email: string;
+            password: string;
+        }) => Promise<AxiosResponse<{
+            type: "bearer";
+            token: string;
+            expires_at?: string | undefined;
+            expires_in?: number | undefined;
+        }>>;
+        controllerName: string;
+    };
 };
 export {};

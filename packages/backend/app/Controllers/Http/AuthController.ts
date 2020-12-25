@@ -18,4 +18,13 @@ export default class AuthController {
     const token = await auth.use('api').login(user)
     return token
   }
+  public async login({
+    auth,
+    request,
+  }: HttpContextContract): Promise<ReturnType<OpaqueTokenContract<User>['toJSON']>> {
+    const email = request.input('email')
+    const password = request.input('password')
+    const token = await auth.use('api').attempt(email, password)
+    return token
+  }
 }

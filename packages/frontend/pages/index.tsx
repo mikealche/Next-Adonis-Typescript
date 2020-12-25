@@ -4,6 +4,7 @@ import { routes, authenticateAPI } from "@template/shared";
 import Cookies from "js-cookie";
 import { useAuth } from "../contexts/auth";
 import { useRouter } from "next/router";
+import MainLayout from "../layouts/MainLayout";
 export default function Home() {
   const { setToken } = useAuth();
   const router = useRouter();
@@ -20,15 +21,17 @@ export default function Home() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Signup</h1>
-      <p>Email</p>
-      <input type="email" name="email" id="" />
-      <p>Password</p>
-      <input type="password" name="password" id="" />
-      <div>
-        <button className="btn btn-info"> Submit </button>
-      </div>
-    </form>
+    <MainLayout>
+      <form onSubmit={handleSubmit}>
+        <h1>Signup</h1>
+        <p>Email</p>
+        <input type="email" name="email" />
+        <p>Password</p>
+        <input type="password" name="password" />
+        <div>
+          <button className="btn btn-info"> Submit </button>
+        </div>
+      </form>
+    </MainLayout>
   );
 }

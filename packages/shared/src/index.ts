@@ -27,11 +27,21 @@ const userRoutes = {
     route: "/signup",
     method: "post",
     request: ({ email, password }: { email: string; password: string }) =>
-      api.post<Awaited<ReturnType<AuthController["signup"]>>>("signup", {
+      api.post<Awaited<ReturnType<AuthController["signup"]>>>("/signup", {
         email,
         password,
       }),
     controllerName: "AuthController.signup",
+  },
+  login: {
+    route: "/login",
+    method: "post",
+    request: ({ email, password }: { email: string; password: string }) =>
+      api.post<Awaited<ReturnType<AuthController["login"]>>>("/login", {
+        email,
+        password,
+      }),
+    controllerName: "AuthController.login",
   },
 };
 

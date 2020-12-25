@@ -21,7 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 import { routes } from '@template/shared'
 
-for (const [_, { route, method, controllerName }] of Object.entries(routes)) {
+for (const [, { route, method, controllerName }] of Object.entries(routes)) {
   Route[method](route, controllerName)
 }
 

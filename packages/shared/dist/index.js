@@ -38,12 +38,24 @@ var userRoutes = {
         method: "post",
         request: function (_a) {
             var email = _a.email, password = _a.password;
-            return api.post("signup", {
+            return api.post("/signup", {
                 email: email,
                 password: password,
             });
         },
         controllerName: "AuthController.signup",
+    },
+    login: {
+        route: "/login",
+        method: "post",
+        request: function (_a) {
+            var email = _a.email, password = _a.password;
+            return api.post("/login", {
+                email: email,
+                password: password,
+            });
+        },
+        controllerName: "AuthController.login",
     },
 };
 exports.routes = __assign({}, userRoutes);
