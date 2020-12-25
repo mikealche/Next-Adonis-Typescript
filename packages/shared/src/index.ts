@@ -3,7 +3,7 @@ import Axios, { AxiosResponse } from "axios";
 
 type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 
-type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
+export type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
 
 const api = Axios.create({
   baseURL: "http://localhost:3333/",

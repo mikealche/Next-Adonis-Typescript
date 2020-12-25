@@ -1,4 +1,6 @@
 import { AxiosResponse } from "axios";
+declare type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
+export declare type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
 export declare const authenticateAPI: (token: string) => void;
 export declare const routes: {
     me: {
@@ -22,3 +24,4 @@ export declare const routes: {
         controllerName: string;
     };
 };
+export {};
