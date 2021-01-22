@@ -22,7 +22,7 @@ const SignupForm = () => {
       })}
       onSubmit={async ({ email, password }, { setSubmitting, setErrors }) => {
         try {
-          const { data: token } = await routes.signup.request({
+          const { data: token } = await routes.user.signup.request({
             email,
             password,
           });

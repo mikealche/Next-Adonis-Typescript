@@ -4,7 +4,7 @@ import User from '../../Models/User'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
-  public async me({ auth, request }: HttpContextContract): Promise<User> {
+  public async me({ auth }: HttpContextContract): Promise<User> {
     const user = await auth.use('api').authenticate()
     return user
   }

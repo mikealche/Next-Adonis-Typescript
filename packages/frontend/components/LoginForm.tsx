@@ -19,7 +19,7 @@ const LoginForm = () => {
       })}
       onSubmit={async ({ email, password }, { setSubmitting, setErrors }) => {
         try {
-          const { data: token } = await routes.login.request({
+          const { data: token } = await routes.user.login.request({
             email,
             password,
           });

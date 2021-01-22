@@ -43,3 +43,6 @@ yarn-error.log*
 
 #deploy
 deploy
+
+
+packages/shared/dist

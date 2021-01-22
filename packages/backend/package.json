@@ -10,7 +10,8 @@
     "start": "node server.js",
     "dev": "node ace serve --watch",
     "lint": "eslint . --ext=.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "resetDB": "adonis migration:rollback && adonis migration:run  "
   },
   "devDependencies": {
     "@adonisjs/assembler": "^3.0.0",

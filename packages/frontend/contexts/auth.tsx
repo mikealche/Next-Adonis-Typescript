@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     authenticateAPI(token);
     try {
-      const { data: user } = await routes.me.request();
+      const { data: user } = await routes.user.me.request();
       setUser(user);
       Cookies.set("token", token);
       setIsLoading(false);

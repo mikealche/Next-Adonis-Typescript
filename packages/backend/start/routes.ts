@@ -20,8 +20,13 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import { routes } from '@template/shared'
+import { RouteObject } from '@template/shared/dist/routeObject'
 
-for (const [, { route, method, handler }] of Object.entries(routes)) {
+const flattenedRoutes = Object.values(routes).flatMap((routeTopic) =>
+  Object.values(routeTopic)
+) as RouteObject<any>[]
+
+for (const [, { route, method, handler }] of Object.entries(flattenedRoutes)) {
   Route[method](route, handler)
 }
 
