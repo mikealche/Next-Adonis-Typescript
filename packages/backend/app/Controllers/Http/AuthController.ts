@@ -8,6 +8,7 @@ export default class AuthController {
     const user = await auth.use('api').authenticate()
     return user
   }
+
   public async signup({
     auth,
     request,
