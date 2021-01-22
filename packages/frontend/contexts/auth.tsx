@@ -8,7 +8,7 @@ import {
 } from "@template/shared";
 import { useRouter } from "next/router";
 
-type User = APIType<typeof routes["me"]["request"]>["data"];
+type User = APIType<typeof routes["user"]["me"]["request"]>["data"];
 
 const AuthContext = React.createContext(
   {} as {
