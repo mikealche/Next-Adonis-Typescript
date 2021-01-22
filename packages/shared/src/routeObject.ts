@@ -9,9 +9,12 @@ export type APISuccessValue<
   T extends () => Promise<AxiosResponse>
 > = APIType<T>["data"];
 
-export class RouteObject<ResponseType extends (...args: any) => any> {
+export class RouteObject<
+  RequestType extends {},
+  ResponseType extends (...args: any) => any
+> {
   public async request(
-    ...args: any
+    ...args: [RequestType]
   ): Promise<AxiosResponse<APIType<ResponseType>>> {
     if (this.method === "get") {
       return api[this.method](this.route);

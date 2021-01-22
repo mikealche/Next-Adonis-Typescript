@@ -24,7 +24,7 @@ import { RouteObject } from '@template/shared/dist/routeObject'
 
 const flattenedRoutes = Object.values(routes).flatMap((routeTopic) =>
   Object.values(routeTopic)
-) as RouteObject<any>[]
+) as RouteObject<any, any>[]
 
 for (const [, { route, method, handler }] of Object.entries(flattenedRoutes)) {
   Route[method](route, handler)

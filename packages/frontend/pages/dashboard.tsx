@@ -11,5 +11,9 @@ export default function dashboard() {
     if (!user && !isLoading) router.push("/signup");
   }, [user, isLoading]);
 
-  return <MainLayout>"</MainLayout>;
+  return (
+    <MainLayout>
+      <h1>Welcome </h1>
+    </MainLayout>
+  );
 }
