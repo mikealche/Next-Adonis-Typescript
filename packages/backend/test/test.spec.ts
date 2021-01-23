@@ -2,25 +2,16 @@ import test from 'japa'
 import { JSDOM } from 'jsdom'
 import supertest from 'supertest'
 import User from 'App/Models/User'
+const { chromium } = require('playwright')
 
 const BASE_URL = `http://${process.env.HOST}:${process.env.PORT}`
 
 test.group('Welcome', () => {
   test('ensure home page works', async (assert) => {
-    const { text } = await supertest(BASE_URL).get('/').expect(200)
-    const { document } = new JSDOM(text).window
-    const title = document.querySelector('.title')
-
-    assert.exists(title)
-    assert.equal(title!.textContent!.trim(), 'It Works!')
-  })
-
-  test('ensure user password gets hashed during save', async (assert) => {
-    const user = new User()
-    user.email = 'virk@adonisjs.com'
-    user.password = 'secret'
-    await user.save()
-
-    assert.notEqual(user.password, 'secret')
-  })
+    const browser = await chromium.launch()
+    const page = await browser.newPage()
+    await page.goto('http://localhost:3000/')
+    await page.screenshot({ path: `example.png` })
+    await browser.close()
+  }).timeout(5000)
 })
