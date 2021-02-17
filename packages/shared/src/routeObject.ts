@@ -10,16 +10,18 @@ export type APISuccessValue<
 > = APIType<T>["data"];
 
 export class RouteObject<
-  RequestType extends {},
+  RequestType extends any,
   ResponseType extends (...args: any) => any
 > {
   public async request(
-    ...args: [RequestType]
+    payload: RequestType
   ): Promise<AxiosResponse<APIType<ResponseType>>> {
     if (this.method === "get") {
-      return api[this.method](this.route);
+      return api[this.method](
+        `${this.route}?${new URLSearchParams(payload as {})}`
+      );
     } else if (this.method === "post") {
-      return api[this.method](this.route, ...args);
+      return api[this.method](this.route, payload);
     }
     return Promise.reject("invalid method");
   }
