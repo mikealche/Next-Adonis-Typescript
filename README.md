@@ -10,6 +10,11 @@ You can still however deploy the Next.js and the Adonis.js as separate apps on d
 
 
 ## Development
+0. open a terminal and cd into the projects' root directory directory and run 
+```
+yarn
+```
+
 1. open a terminal and cd into the `packages/shared` directory and run 
 ```
 yarn build:watch
