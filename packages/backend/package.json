@@ -6,7 +6,7 @@
   "typings": "./build/entrypoint.d.ts",
   "scripts": {
     "build": "node ace build --production",
-    "build:watch": "nodemon -e ts,js --ignore ./build -x 'rm -rf ./build/**/*.* && node ace build --production'",
+    "build:watch": "mkdir -p build && nodemon -e ts,js --ignore ./build -x 'rm -rf ./build && node ace build --production'",
     "start": "node server.js",
     "dev": "node ace serve --watch",
     "lint": "eslint . --ext=.ts",
