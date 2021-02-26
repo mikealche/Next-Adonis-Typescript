@@ -7,7 +7,7 @@ export interface AuthInterface {
 }
 
 export const user = {
-  me: new RouteObject<null, AuthController["me"]>(
+  me: new RouteObject<void, AuthController["me"]>(
     "get",
     "/auth/me",
     "AuthController.me"
