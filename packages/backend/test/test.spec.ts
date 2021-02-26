@@ -1,7 +1,5 @@
 import test from 'japa'
-import { JSDOM } from 'jsdom'
-import supertest from 'supertest'
-import User from 'App/Models/User'
+
 const { chromium } = require('playwright')
 
 const BASE_URL = `http://${process.env.HOST}:${process.env.PORT}`

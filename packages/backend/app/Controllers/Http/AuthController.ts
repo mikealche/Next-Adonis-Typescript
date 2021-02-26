@@ -33,6 +33,7 @@ export default class AuthController {
     const token = await auth.use('api').login(user)
     return token
   }
+
   public async login({
     auth,
     request,
