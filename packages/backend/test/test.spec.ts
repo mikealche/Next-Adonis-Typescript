@@ -3,7 +3,7 @@ import test from 'japa'
 const { chromium } = require('playwright')
 
 test.group('Welcome', () => {
-  test('ensure home page works', async (assert) => {
+  test('ensure home page works', async () => {
     const browser = await chromium.launch()
     const page = await browser.newPage()
     await page.goto('http://localhost:3000/')
