@@ -22,6 +22,7 @@ tmp
 
 # production
 /build
+!packages/backend/build
 
 # misc
 .DS_Store
