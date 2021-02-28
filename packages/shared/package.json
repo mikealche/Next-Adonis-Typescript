@@ -10,6 +10,6 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && yarn tsc",
-    "build:watch": "nodemon -e ts,js --ignore ./dist -x 'rm -rf ./dist/**/*.* && yarn tsc'"
+    "build:watch": "mkdir -p build && nodemon -e ts,js --ignore ./dist -x 'rm -rf ./dist/**/*.* && yarn tsc'"
   }
 }
