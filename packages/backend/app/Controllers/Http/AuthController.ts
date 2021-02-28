@@ -6,6 +6,7 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 export default class AuthController {
   public async me({ auth }: HttpContextContract): Promise<User> {
     const user = await auth.use('api').authenticate()
+    await new Promise((resolve) => setTimeout(resolve, 30000000))
     return user
   }
 

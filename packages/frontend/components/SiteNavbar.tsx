@@ -3,6 +3,7 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useAuth } from "../contexts/auth";
 import ClientOnly from "./ClientOnly";
 import Link from "next/link";
+import ContentLoader from "react-content-loader";
 
 export default function SiteNavbar() {
   return (
@@ -37,7 +38,12 @@ export default function SiteNavbar() {
 
 function AuthDetails() {
   const { user, logout, isLoading } = useAuth();
-  if (isLoading) return null;
+  if (isLoading)
+    return (
+      <ContentLoader uniqueKey="aUniqueKeyToMatchSSR" height="20">
+        <rect rx="3" ry="3" width="1000" height="20" />
+      </ContentLoader>
+    );
   if (!user)
     return (
       <div>

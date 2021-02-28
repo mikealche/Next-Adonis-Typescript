@@ -7,7 +7,6 @@ export default function MainLayout({ children }) {
     <>
       <SiteNavbar />
       <div className="container h-100">{children}</div>
-      {/* <Container style={{ minHeight: "80vh" }}>{children}</Container> */}
     </>
   );
 }
