@@ -9,7 +9,7 @@ You can still however deploy the Next.js and the Adonis.js as separate apps on d
 
 
 
-## Development (5 easy steps)
+## Development 
 0. open a terminal and cd into the projects' root directory directory and run 
 ```
 yarn
