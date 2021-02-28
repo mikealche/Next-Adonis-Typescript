@@ -1,4 +1,4 @@
-<img src="./packages/frontend/public/nextadonis.jpg"/>
+![image](https://user-images.githubusercontent.com/8585011/109405409-14023b80-794f-11eb-95bc-b58f7a8e572a.png)
 
 # Next.js + Adonis.js Full Typescript Starter Template
 
