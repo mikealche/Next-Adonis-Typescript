@@ -9,7 +9,7 @@ You can still however deploy the Next.js and the Adonis.js as separate apps on d
 
 
 
-## Development
+## Development (5 easy steps)
 0. open a terminal and cd into the projects' root directory directory and run 
 ```
 yarn
@@ -24,6 +24,9 @@ yarn build:watch
 ```
 yarn build:watch
 ```
+
+2.5 Open `packages/backend/.env` and set the `PG_USER`, `PG_PASSWORD` and `PG_DB_NAME` env vars.
+
 
 3. open a third terminal cd into the `packages/backend` directory and run 
 ```
