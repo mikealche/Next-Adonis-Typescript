@@ -1,4 +1,4 @@
-/// <reference types="@adonisjs/application/build/adonis-typings" />
+/// <reference types="@adonisjs/application/build/adonis-typings/application" />
 import { ApplicationContract } from '@ioc:Adonis/Core/Application';
 export default class AppProvider {
     protected app: ApplicationContract;
