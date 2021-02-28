@@ -18,11 +18,11 @@ function MyApp({ Component, pageProps }: CustomAppProps) {
   const { isAuthenticated, isLoading, token, logout } = useAuth();
 
   useEffect(() => {
-    if (!isAuthenticated && !isLoading && token) {
+    if (Component.requiresAuth && token && !isAuthenticated && !isLoading) {
       // Invalid token
-      logout(Component.redirectUnauthenticatedTo);
+      logout({ redirectLocation: Component.redirectUnauthenticatedTo });
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, token]);
 
   return (
     <>

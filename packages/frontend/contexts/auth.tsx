@@ -14,7 +14,7 @@ const AuthContext = React.createContext(
   {} as {
     user: User;
     authenticate: (newToken: string) => Promise<void>;
-    logout: (string) => void;
+    logout: ({ redirectLocation: string }) => void;
     isLoading: boolean;
     isAuthenticated: boolean;
     token: string;
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const logout = (redirectLocation) => {
+  const logout = ({ redirectLocation }) => {
     Cookies.remove("token");
     unauthenticateAPI();
     setUser(null);

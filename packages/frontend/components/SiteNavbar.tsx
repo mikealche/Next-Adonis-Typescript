@@ -48,11 +48,11 @@ function AuthDetails() {
     return (
       <div>
         <Nav>
-          <Link href="/" passHref>
+          <Link href="/signup" passHref>
             <Nav.Link>Signup</Nav.Link>
           </Link>
 
-          <Link href="login" passHref>
+          <Link href="/login" passHref>
             <Nav.Link href="login">Login</Nav.Link>
           </Link>
         </Nav>
@@ -61,7 +61,9 @@ function AuthDetails() {
   return (
     <Nav>
       <Nav.Link>{user.email}</Nav.Link>
-      <Nav.Link onClick={logout}>Logout</Nav.Link>
+      <Nav.Link onClick={() => logout({ redirectLocation: "/login" })}>
+        Logout
+      </Nav.Link>
     </Nav>
   );
 }
