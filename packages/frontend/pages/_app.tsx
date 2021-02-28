@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }: CustomAppProps) {
       {Component.requiresAuth && (
         <Head>
           <script
+            // If no token is found, redirect inmediately
             dangerouslySetInnerHTML={{
               __html: `if(!document.cookie || document.cookie.indexOf('token') === -1)
             {location.replace(
