@@ -27,6 +27,7 @@ yarn build:watch
 
 2.5 Open `packages/backend/.env` and set the `PG_USER`, `PG_PASSWORD` and `PG_DB_NAME` env vars.
 
+2.6 cd into `packages/backend/` and run the migrations with `node ace migration:run
 
 3. open a third terminal cd into the `packages/backend` directory and run 
 ```
