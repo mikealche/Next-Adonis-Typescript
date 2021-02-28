@@ -8,7 +8,6 @@ const Validator_1 = global[Symbol.for('ioc.use')]("Adonis/Core/Validator");
 class AuthController {
     async me({ auth }) {
         const user = await auth.use('api').authenticate();
-        await new Promise((resolve) => setTimeout(resolve, 30000000));
         return user;
     }
     async signup({ auth, request, }) {
