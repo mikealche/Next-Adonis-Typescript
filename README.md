@@ -1,4 +1,4 @@
-<img src="./nextadonis.jpg"/>
+<img src="./packages/frontend/public/nextadonis.jpg"/>
 
 # Next.js + Adonis.js Full Typescript Starter Template
 
