@@ -2,9 +2,8 @@ import { AuthProvider, useAuth } from "../contexts/auth";
 import "../styles/theme.scss";
 
 import { NextPage } from "next";
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import { AppProps } from "next/dist/next-server/lib/router/router";
-import { useRouter } from "next/router";
 import Head from "next/head";
 
 type CustomPage = NextPage & {
@@ -17,7 +16,6 @@ interface CustomAppProps extends Omit<AppProps, "Component"> {
 
 function MyApp({ Component, pageProps }: CustomAppProps) {
   const { isAuthenticated, isLoading, token, logout } = useAuth();
-  const router = useRouter();
 
   useEffect(() => {
     if (!isAuthenticated && !isLoading && token) {
