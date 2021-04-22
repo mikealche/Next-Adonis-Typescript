@@ -13,7 +13,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.routes = void 0;
 __exportStar(require("./api"), exports);
 var user_1 = require("./routes/user");
+var todo_1 = require("./routes/todo");
 __exportStar(require("./routeObject"), exports);
 exports.routes = {
     user: user_1.user,
+    todo: todo_1.todo,
 };

@@ -18,4 +18,7 @@ export declare const routes: {
             expires_in?: number | undefined;
         }>>;
     };
+    todo: {
+        all: import("./routeObject").RouteObject<void, () => Promise<import("@template/backend/build/app/Models/Todo").default[]>>;
+    };
 };

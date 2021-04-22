@@ -39,10 +39,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RouteObject = void 0;
 var api_1 = require("./api");
 var RouteObject = /** @class */ (function () {
-    function RouteObject(method, route, handler) {
+    function RouteObject(_a) {
+        var method = _a.method, route = _a.route, controller = _a.controller, isProtected = _a.isProtected, requiredRoles = _a.requiredRoles;
         this.method = method;
         this.route = route;
-        this.handler = handler;
+        this.controller = controller;
+        this.isProtected = isProtected;
+        this.requiredRoles = requiredRoles;
     }
     RouteObject.prototype.request = function (payload) {
         return __awaiter(this, void 0, void 0, function () {

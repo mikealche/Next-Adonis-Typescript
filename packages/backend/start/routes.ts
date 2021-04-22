@@ -26,8 +26,17 @@ const flattenedRoutes = Object.values(routes).flatMap((routeTopic) =>
   Object.values(routeTopic)
 ) as RouteObject<any, any>[]
 
-for (const [, { route, method, handler }] of Object.entries(flattenedRoutes)) {
-  Route[method](route, handler)
+for (const { route, method, controller, isProtected, requiredRoles } of Object.values(
+  flattenedRoutes
+)) {
+  let definedRoute = Route[method](route, controller)
+  if (isProtected) {
+    definedRoute.middleware(['auth'])
+  }
+  if (requiredRoles) {
+    console.log({ requiredRoles })
+    definedRoute.middleware([`role:${requiredRoles.join(':')}`])
+  }
 }
 
 Route.get('/', async () => {

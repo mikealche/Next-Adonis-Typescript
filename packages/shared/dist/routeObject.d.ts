@@ -1,12 +1,23 @@
 import { AxiosResponse } from "axios";
+import User from "@template/backend/build/app/Models/User";
 declare type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 export declare type APIType<T extends (...args: any) => any> = Awaited<ReturnType<T>>;
 export declare type APISuccessValue<T extends () => Promise<AxiosResponse>> = APIType<T>["data"];
-export declare class RouteObject<RequestType extends any, ResponseType extends (...args: any) => any> {
+declare type UserRoles = InstanceType<typeof User>["role"][];
+declare type RouteObjectParams = {
     method: "get" | "post";
     route: string;
-    handler: string;
+    controller: string;
+    isProtected?: boolean;
+    requiredRoles?: UserRoles;
+};
+export declare class RouteObject<RequestType extends any, ResponseType extends (...args: any) => any> {
     request(payload: RequestType): Promise<AxiosResponse<APIType<ResponseType>>>;
-    constructor(method: "get" | "post", route: string, handler: string);
+    method: "get" | "post";
+    route: string;
+    controller: string;
+    isProtected?: boolean;
+    requiredRoles?: UserRoles;
+    constructor({ method, route, controller, isProtected, requiredRoles, }: RouteObjectParams);
 }
 export {};

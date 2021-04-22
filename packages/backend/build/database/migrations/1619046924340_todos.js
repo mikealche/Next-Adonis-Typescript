@@ -4,18 +4,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Schema_1 = __importDefault(global[Symbol.for('ioc.use')]("Adonis/Lucid/Schema"));
-class UsersSchema extends Schema_1.default {
+class Todos extends Schema_1.default {
     constructor() {
         super(...arguments);
-        this.tableName = 'users';
+        this.tableName = 'todos';
     }
     async up() {
         this.schema.createTable(this.tableName, (table) => {
-            table.increments('id').primary();
-            table.string('email', 255).unique().notNullable();
-            table.string('role').defaultTo('regular');
-            table.string('password', 180).notNullable();
-            table.string('remember_me_token').nullable();
+            table.increments('id');
+            table.string('text');
+            table.boolean('completed');
+            table
+                .integer('user_id')
+                .references('id')
+                .inTable('users')
+                .notNullable()
+                .onDelete('CASCADE')
+                .onUpdate('CASCADE');
             table.timestamps(true);
         });
     }
@@ -23,5 +28,5 @@ class UsersSchema extends Schema_1.default {
         this.schema.dropTable(this.tableName);
     }
 }
-exports.default = UsersSchema;
-//# sourceMappingURL=1587988332388_users.js.map
+exports.default = Todos;
+//# sourceMappingURL=1619046924340_todos.js.map

@@ -13,53 +13,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const luxon_1 = require("luxon");
-const Hash_1 = __importDefault(global[Symbol.for('ioc.use')]("Adonis/Core/Hash"));
 const Orm_1 = global[Symbol.for('ioc.use')]("Adonis/Lucid/Orm");
-const Todo_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Todo"));
-class User extends Orm_1.BaseModel {
-    static async hashPassword(user) {
-        if (user.$dirty.password) {
-            user.password = await Hash_1.default.make(user.password);
-        }
-    }
+const User_1 = __importDefault(require("./User"));
+class Todo extends Orm_1.BaseModel {
 }
 __decorate([
     Orm_1.column({ isPrimary: true }),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Todo.prototype, "id", void 0);
 __decorate([
-    Orm_1.column(),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    Orm_1.column({ serializeAs: null }),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    Orm_1.column(),
-    __metadata("design:type", String)
-], User.prototype, "rememberMeToken", void 0);
-__decorate([
-    Orm_1.column(),
-    __metadata("design:type", String)
-], User.prototype, "role", void 0);
-__decorate([
-    Orm_1.hasMany(() => Todo_1.default),
+    Orm_1.belongsTo(() => User_1.default),
     __metadata("design:type", Object)
-], User.prototype, "todos", void 0);
+], Todo.prototype, "user", void 0);
+__decorate([
+    Orm_1.column(),
+    __metadata("design:type", String)
+], Todo.prototype, "text", void 0);
+__decorate([
+    Orm_1.column(),
+    __metadata("design:type", Number)
+], Todo.prototype, "userId", void 0);
 __decorate([
     Orm_1.column.dateTime({ autoCreate: true }),
     __metadata("design:type", luxon_1.DateTime)
-], User.prototype, "createdAt", void 0);
+], Todo.prototype, "createdAt", void 0);
 __decorate([
     Orm_1.column.dateTime({ autoCreate: true, autoUpdate: true }),
     __metadata("design:type", luxon_1.DateTime)
-], User.prototype, "updatedAt", void 0);
-__decorate([
-    Orm_1.beforeSave(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [User]),
-    __metadata("design:returntype", Promise)
-], User, "hashPassword", null);
-exports.default = User;
-//# sourceMappingURL=User.js.map
+], Todo.prototype, "updatedAt", void 0);
+exports.default = Todo;
+//# sourceMappingURL=Todo.js.map

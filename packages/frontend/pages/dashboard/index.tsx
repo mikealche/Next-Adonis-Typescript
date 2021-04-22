@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { useAuth } from "../contexts/auth";
-import MainLayout from "../layouts/MainLayout";
+import { useAuth } from "../../contexts/auth";
+import MainLayout from "../../layouts/MainLayout";
 import ContentLoader from "react-content-loader";
 import { Col, Row } from "react-bootstrap";
 
