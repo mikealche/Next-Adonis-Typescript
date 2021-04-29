@@ -6,7 +6,7 @@ export default function MainLayout({ children }) {
   return (
     <>
       <SiteNavbar />
-      <div className="container h-100">{children}</div>
+      <div className="container h-100 pt-5">{children}</div>
     </>
   );
 }

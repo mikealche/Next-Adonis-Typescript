@@ -9,4 +9,17 @@ export const todo = {
     isProtected: true,
     requiredRoles: ["admin"],
   }),
+
+  own: new RouteObject<void, TodosController["own"]>({
+    method: "get",
+    route: "/own-todos",
+    controller: "TodosController.own",
+    isProtected: true,
+  }),
+  create: new RouteObject<{ text: string }, TodosController["create"]>({
+    method: "post",
+    route: "/todos/create",
+    controller: "TodosController.create",
+    isProtected: true,
+  }),
 };

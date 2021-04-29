@@ -20,5 +20,9 @@ export declare const routes: {
     };
     todo: {
         all: import("./routeObject").RouteObject<void, () => Promise<import("@template/backend/build/app/Models/Todo").default[]>>;
+        own: import("./routeObject").RouteObject<void, ({ auth }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<import("@template/backend/build/app/Models/Todo").default[] | undefined>>;
+        create: import("./routeObject").RouteObject<{
+            text: string;
+        }, ({ auth, params }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<import("@template/backend/build/app/Models/Todo").default | undefined>>;
     };
 };

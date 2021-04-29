@@ -17,6 +17,10 @@ const useTodos = () => {
   return { todos: data.data };
 };
 
+const Todo = ({ todo }) => {
+  return <p key={todo.id}>{todo.text}</p>;
+};
+
 const Dashboard = () => {
   const { user } = useAuth();
   const { todos } = useTodos();
@@ -25,7 +29,7 @@ const Dashboard = () => {
       <Row>
         <Col>
           {todos?.map((todo) => (
-            <p key={todo.id}>{todo.text}</p>
+            <Todo todo={todo} />
           ))}
         </Col>
       </Row>

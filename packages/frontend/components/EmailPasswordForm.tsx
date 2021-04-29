@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form } from "formik";
 import React from "react";
 import { Button, Form as BootstrapForm } from "react-bootstrap";
 
-const CustomField = ({ name, label, type }) => (
+export const CustomField = ({ name, label, type }) => (
   <BootstrapForm.Group>
     <BootstrapForm.Label htmlFor={name}>{label}</BootstrapForm.Label>
     <Field

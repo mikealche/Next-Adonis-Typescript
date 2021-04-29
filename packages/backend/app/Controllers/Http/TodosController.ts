@@ -11,4 +11,19 @@ export default class TodosController {
   public async index() {
     return Todo.all()
   }
+
+  public async own({ auth }: HttpContextContract) {
+    const user = auth.user
+    const todos = await user?.related('todos').query()
+    return todos
+  }
+
+  public async create({ auth, request }: HttpContextContract) {
+    const { text } = request.all()
+    const user = auth.user
+    const todos = await user?.related('todos').create({
+      text,
+    })
+    return todos
+  }
 }
