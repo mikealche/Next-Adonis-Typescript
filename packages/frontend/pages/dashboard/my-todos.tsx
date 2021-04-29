@@ -19,7 +19,26 @@ const useTodos = () => {
 };
 
 const Todo = ({ todo }) => {
-  return <p key={todo.id}>{todo.text}</p>;
+  const deleteTodo = async () => {
+    await routes.todo.delete.request({
+      id: todo.id,
+    });
+    mutate("my-todos");
+  };
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+      }}
+    >
+      {todo.text}
+      <Button variant="outline-danger" onClick={deleteTodo}>
+        🗑
+      </Button>
+    </div>
+  );
 };
 
 const TodoForm = () => {

@@ -22,4 +22,10 @@ export const todo = {
     controller: "TodosController.create",
     isProtected: true,
   }),
+  delete: new RouteObject<{ id: Number }, TodosController["delete"]>({
+    method: "post",
+    route: "/todos/delete",
+    controller: "TodosController.delete",
+    isProtected: true,
+  }),
 };

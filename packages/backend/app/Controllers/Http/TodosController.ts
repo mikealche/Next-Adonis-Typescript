@@ -26,4 +26,10 @@ export default class TodosController {
     })
     return todos
   }
+
+  public async delete({ auth, request }: HttpContextContract) {
+    const { id } = request.all()
+    const user = auth.user!
+    await Todo.query().where({ id, user_id: user.id }).delete()
+  }
 }

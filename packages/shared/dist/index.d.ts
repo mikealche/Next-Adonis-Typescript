@@ -23,6 +23,9 @@ export declare const routes: {
         own: import("./routeObject").RouteObject<void, ({ auth }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<import("@template/backend/build/app/Models/Todo").default[] | undefined>>;
         create: import("./routeObject").RouteObject<{
             text: string;
-        }, ({ auth, params }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<import("@template/backend/build/app/Models/Todo").default | undefined>>;
+        }, ({ auth, request }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<import("@template/backend/build/app/Models/Todo").default | undefined>>;
+        delete: import("./routeObject").RouteObject<{
+            id: Number;
+        }, ({ auth, request }: import("@ioc:Adonis/Core/HttpContext").HttpContextContract) => Promise<void>>;
     };
 };
