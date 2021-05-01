@@ -8,17 +8,19 @@ import { routes } from "@template/shared";
 import useSWR, { mutate } from "swr";
 import { Form, Formik } from "formik";
 import { CustomField } from "../../components/EmailPasswordForm";
+import type TodoType from "@template/backend/build/app/Models/Todo";
 
 const getTodos = async () => await routes.todo.own.request();
 
 const useTodos = () => {
-  const { data, error } = useSWR("my-todos", getTodos);
+  const { isAuthenticated } = useAuth();
+  const { data, error } = useSWR(isAuthenticated ? "my-todos" : null, getTodos);
   if (error) return { error };
   if (!data) return { isLoading: true };
   return { todos: data.data };
 };
 
-const Todo = ({ todo }) => {
+const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
   const deleteTodo = async () => {
     await routes.todo.delete.request({
       id: todo.id,
@@ -29,9 +31,10 @@ const Todo = ({ todo }) => {
     <div
       style={{
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "center",
         justifyContent: "space-between",
       }}
+      className="my-2 p-3 border rounded"
     >
       {todo.text}
       <Button variant="outline-danger" onClick={deleteTodo}>
@@ -80,8 +83,8 @@ const TodoForm = () => {
 };
 
 const Dashboard = () => {
-  const { user } = useAuth();
-  const { todos } = useTodos();
+  const { todos, isLoading, error } = useTodos();
+  console.log({ todos, isLoading, error });
   return (
     <MainLayout>
       <Row>
@@ -90,6 +93,11 @@ const Dashboard = () => {
           <TodoForm />
         </Col>
         <Col md={6}>
+          {isLoading && (
+            <ContentLoader uniqueKey="aUniqueKeyToMatchSSR">
+              <rect y="10" rx="3" ry="3" width="1000" height="20" />
+            </ContentLoader>
+          )}
           {todos?.map((todo) => (
             <Todo todo={todo} />
           ))}
