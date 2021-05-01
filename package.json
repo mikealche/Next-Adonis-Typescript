@@ -6,6 +6,8 @@
     "packages/*"
   ],
   "scripts": {
+    "build-shared": "cd packages/shared && yarn build",
+    "build-backend": "cd packages/backend && yarn build",
     "remove-builds": " (cd packages/backend && rm -rf build) & (cd packages/shared && rm -rf dist)",
     "watch-build": "(cd packages/backend && yarn build:watch) & (cd packages/shared && yarn build:watch)",
     "start-server": "(cd packages/backend && yarn dev) & (cd packages/frontend && yarn dev)",
