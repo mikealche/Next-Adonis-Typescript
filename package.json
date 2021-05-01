@@ -6,10 +6,13 @@
     "packages/*"
   ],
   "scripts": {
-    "build-shared": "cd packages/shared && yarn build",
-    "build-backend": "cd packages/backend && yarn build",
     "remove-builds": " (cd packages/backend && rm -rf build) & (cd packages/shared && rm -rf dist)",
-    "watch-build": "(cd packages/backend && yarn build:watch) & (cd packages/shared && yarn build:watch)",
+    "build-shared": "cd packages/shared && yarn build",
+    "build-shared:watch": "cd packages/shared && yarn build:watch",
+    "build-backend": "cd packages/backend && yarn build",
+    "build-backend:watch": "cd packages/backend && yarn build:watch",
+    "build": "yarn remove-builds && yarn build-shared || true && yarn build-backend && yarn build-shared",
+    "watch-build": "yarn remove-builds && yarn build-shared || true && (yarn build-backend:watch & (sleep 5 && yarn build-shared:watch))",
     "start-server": "(cd packages/backend && yarn dev) & (cd packages/frontend && yarn dev)",
     "start": "yarn watch-build & yarn start-server"
   }
