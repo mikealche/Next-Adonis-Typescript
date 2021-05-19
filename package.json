@@ -11,9 +11,9 @@
     "build-shared:watch": "cd packages/shared && yarn build:watch",
     "build-backend": "cd packages/backend && yarn build",
     "build-backend:watch": "cd packages/backend && yarn build:watch",
-    "build": "yarn remove-builds && yarn build-shared || true && yarn build-backend && yarn build-shared",
-    "watch-build": "yarn remove-builds && yarn build-shared || true && (yarn build-backend:watch & (sleep 5 && yarn build-shared:watch))",
-    "start-server": "(cd packages/backend && yarn dev) & (cd packages/frontend && yarn dev)",
-    "start": "yarn watch-build & yarn start-server"
+    "init-shared-build": "yarn build-shared &> /dev/null || true",
+    "build": "yarn remove-builds && yarn init-shared-build && yarn build-backend && yarn build-shared",
+    "watch-build": "yarn remove-builds && yarn init-shared-build && (yarn build-backend:watch & (sleep 3 && yarn build-shared:watch))",
+    "start-server": "(cd packages/backend && yarn dev) & (cd packages/frontend && yarn dev)"
   }
 }

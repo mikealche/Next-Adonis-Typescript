@@ -34,7 +34,6 @@ for (const { route, method, controller, isProtected, requiredRoles } of Object.v
     definedRoute.middleware(['auth'])
   }
   if (requiredRoles) {
-    console.log({ requiredRoles })
     definedRoute.middleware([`role:${requiredRoles.join(':')}`])
   }
 }
