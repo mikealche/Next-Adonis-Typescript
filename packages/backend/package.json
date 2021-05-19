@@ -4,6 +4,9 @@
   "private": true,
   "main": "./build/entrypoint.ts",
   "typings": "./build/entrypoint.d.ts",
+  "engines": {
+    "node": ">=14.15.4"
+  },
   "scripts": {
     "build": "node ace build --production",
     "build:watch": "mkdir -p build && nodemon -e ts,js --ignore ./build -x 'rm -rf ./build && node ace build --production'",
@@ -15,7 +18,7 @@
     "test": "node -r @adonisjs/assembler/build/register japaFile.ts"
   },
   "devDependencies": {
-    "@adonisjs/assembler": "^3.0.0",
+    "@adonisjs/assembler": "^5.3.0",
     "@types/jsdom": "^16.2.6",
     "@types/supertest": "^2.0.10",
     "adonis-preset-ts": "^1.1.0",
@@ -36,11 +39,16 @@
     "youch-terminal": "^1.0.1"
   },
   "dependencies": {
-    "@adonisjs/auth": "^5.1.1",
-    "@adonisjs/core": "^5.0.4-preview-rc",
-    "@adonisjs/lucid": "^10.0.0",
-    "@adonisjs/repl": "^1.0.0",
+    "@adonisjs/auth": "^8.0.4",
+    "@adonisjs/core": "^5.1.7",
+    "@adonisjs/lucid": "^14.0.2",
+    "@adonisjs/mail": "^7.1.1",
+    "@adonisjs/repl": "^3.1.2",
+    "@adonisjs/session": "^6.0.3",
+    "@adonisjs/shield": "^7.0.2",
+    "@adonisjs/view": "^6.0.2",
     "@template/shared": "1.0.0",
+    "argon2": "^0.27.2",
     "luxon": "^1.25.0",
     "pg": "^8.5.1",
     "phc-argon2": "^1.0.11",

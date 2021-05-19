@@ -50,6 +50,7 @@ const bodyParserConfig: BodyParserConfig = {
   |
   */
   form: {
+    convertEmptyStringsToNull: false,
     encoding: 'utf-8',
     limit: '1mb',
     queryString: {},
@@ -174,6 +175,8 @@ const bodyParserConfig: BodyParserConfig = {
     |
     */
     types: ['multipart/form-data'],
+
+    convertEmptyStringsToNull: false,
   },
 }
 

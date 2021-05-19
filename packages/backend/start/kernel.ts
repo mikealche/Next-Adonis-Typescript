@@ -20,7 +20,7 @@ import Server from '@ioc:Adonis/Core/Server'
 | are defined for every HTTP requests.
 |
 */
-Server.middleware.register(['Adonis/Core/BodyParserMiddleware'])
+Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,6 @@ Server.middleware.register(['Adonis/Core/BodyParserMiddleware'])
 |
 */
 Server.middleware.registerNamed({
-  auth: 'App/Middleware/Auth',
-  role: 'App/Middleware/RoleAuth',
+  auth: () => import('App/Middleware/Auth'),
+  role: () => import('App/Middleware/RoleAuth'),
 })
