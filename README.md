@@ -18,29 +18,23 @@ You can still however deploy the Next.js and the Adonis.js as separate apps on d
 yarn
 ```
 
-1. open a terminal and cd into the `packages/shared` directory and run 
+1. open a terminal and run 
 ```
-yarn build:watch
-```
-
-2. open a second terminal and  cd into the `packages/backend` directory and run 
-```
-yarn build:watch
+yarn build-watch
 ```
 
-3. Open `packages/backend/.env` and set the `PG_USER`, `PG_PASSWORD` and `PG_DB_NAME` env vars.
-
-4. cd into `packages/backend/` and run the migrations with `node ace migration:run
-
-5. open a third terminal cd into the `packages/backend` directory and run 
+2. open a second terminal andrun 
 ```
-yarn dev
+yarn start-server
 ```
 
-6. open a fourth terminal cd into the `packages/frontend` directory and run 
-```
-yarn dev
-```
+The Next.js frontend will be running at localhost:3000
+
+# First time DB setup
+
+1. Open `packages/backend/.env` and set the `PG_USER`, `PG_PASSWORD` and `PG_DB_NAME` env vars.
+
+2. cd into `packages/backend/` and run the migrations with `node ace migration:run`
 
 # Deployment
 To deploy the backend run the `./deploy_backend.sh` file and deploy the generated `deploy` folder to a service like Heroku. 
