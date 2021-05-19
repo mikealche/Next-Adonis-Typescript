@@ -13,7 +13,6 @@ const useTodos = () => {
   const { data, error } = useSWR("todos", getTodos);
   if (error) return { error };
   if (!data) return { isLoading: true };
-  console.log(data.data);
   return { todos: data.data };
 };
 
