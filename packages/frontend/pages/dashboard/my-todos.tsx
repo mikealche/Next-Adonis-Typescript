@@ -84,7 +84,6 @@ const TodoForm = () => {
 
 const MyTodos = () => {
   const { todos, isLoading, error } = useTodos();
-  console.log({ todos, isLoading, error });
   return (
     <MainLayout>
       <Row>
