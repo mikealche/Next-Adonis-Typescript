@@ -82,7 +82,7 @@ const TodoForm = () => {
   );
 };
 
-const Dashboard = () => {
+const MyTodos = () => {
   const { todos, isLoading, error } = useTodos();
   console.log({ todos, isLoading, error });
   return (
@@ -107,7 +107,7 @@ const Dashboard = () => {
   );
 };
 
-Dashboard.requiresAuth = true;
-Dashboard.redirectUnauthenticated = "/login";
+MyTodos.requiresAuth = true;
+MyTodos.redirectUnauthenticated = "/login";
 
-export default Dashboard;
+export default MyTodos;

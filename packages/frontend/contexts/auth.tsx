@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
     unauthenticateAPI();
     setUser(null);
     setIsLoading(false);
+    console.log("Redirecting");
     router.push(redirectLocation || "/login");
   };
 
@@ -41,14 +42,13 @@ export const AuthProvider = ({ children }) => {
       const { data: user } = await routes.user.me.request();
       setUser(user);
       Cookies.set("token", token);
-      setIsLoading(false);
     } catch (error) {
       console.log({ error });
       unauthenticateAPI();
       setUser(null);
       Cookies.remove("token");
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {

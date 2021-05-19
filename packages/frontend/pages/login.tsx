@@ -1,7 +1,7 @@
 import MainLayout from "../layouts/MainLayout";
 import LoginForm from "../components/LoginForm";
 import { Col, Row } from "react-bootstrap";
-export default function Home() {
+export default function Login() {
   return (
     <MainLayout>
       <Row className="h-50 justify-content-center">

@@ -16,9 +16,6 @@ export default function SiteNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Link href="/dashboard/todos" passHref>
-              <Nav.Link>Todos</Nav.Link>
-            </Link>
             <Link href="/dashboard/my-todos" passHref>
               <Nav.Link>My todos</Nav.Link>
             </Link>
