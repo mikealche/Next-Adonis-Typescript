@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { useAuth } from "../../contexts/auth";
-import MainLayout from "../../layouts/MainLayout";
+import { useAuth } from "@/contexts/auth";
+import MainLayout from "@/layouts/MainLayout";
 import ContentLoader from "react-content-loader";
 import { Button, Col, Row } from "react-bootstrap";
 import { routes } from "@template/shared";
 import useSWR, { mutate } from "swr";
 import { Form, Formik } from "formik";
-import { CustomField } from "../../components/EmailPasswordForm";
+import { CustomField } from "@/components/EmailPasswordForm";
 import type TodoType from "@template/backend/build/app/Models/Todo";
 
 const getTodos = async () => await routes.todo.own.request();
