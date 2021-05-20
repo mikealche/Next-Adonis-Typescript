@@ -23,7 +23,7 @@ yarn
 yarn build-watch
 ```
 
-2. open a second terminal andrun 
+2. open a second terminal and run 
 ```
 yarn start-server
 ```
