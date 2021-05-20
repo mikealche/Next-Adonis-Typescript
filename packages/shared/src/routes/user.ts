@@ -24,4 +24,5 @@ export const user = {
     route: "/auth/login",
     controller: "AuthController.login",
   }),
+  /** Inject new routes here */
 };
