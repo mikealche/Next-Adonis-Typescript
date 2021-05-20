@@ -15,15 +15,6 @@ interface CustomAppProps extends Omit<AppProps, "Component"> {
 }
 
 function MyApp({ Component, pageProps }: CustomAppProps) {
-  const { isAuthenticated, isLoading, token, logout } = useAuth();
-
-  useEffect(() => {
-    if (Component.requiresAuth && token && !isAuthenticated && !isLoading) {
-      // Invalid token
-      logout({ redirectLocation: Component.redirectUnauthenticatedTo });
-    }
-  }, [isLoading, isAuthenticated, token]);
-
   return (
     <>
       {Component.requiresAuth && (

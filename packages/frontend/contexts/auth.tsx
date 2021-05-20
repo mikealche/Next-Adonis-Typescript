@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState<User>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const isAuthenticated = !!user;
 
   const logout = ({ redirectLocation }) => {
     Cookies.remove("token");
@@ -56,6 +57,27 @@ export const AuthProvider = ({ children }) => {
     if (!token) return;
     authenticate(token);
   }, []);
+
+  useEffect(() => {
+    const Component = children.type;
+
+    // If it doesn't require auth, everything's good.
+    if (!Component.requiresAuth) return;
+
+    // If we're already authenticated, everything's good.
+    if (isAuthenticated) return;
+
+    // If we don't have a token in the cookies, logout
+    const token = Cookies.get("token");
+    if (!token) {
+      return logout({ redirectLocation: Component.redirectUnauthenticatedTo });
+    }
+
+    // If we're not loading give the try to authenticate with the given token.
+    if (!isLoading) {
+      authenticate(token);
+    }
+  }, [isLoading, isAuthenticated, children.type.requiresAuth]);
 
   return (
     <AuthContext.Provider
